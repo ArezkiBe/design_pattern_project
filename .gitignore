@@ -1,0 +1,6 @@
+config.php
+# Ignore Composer dependencies
+/vendor/
+# Ignore PHPUnit result cache
+.phpunit.result.cache
+ngrok-stable-linux-amd64.zip
