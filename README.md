@@ -8,7 +8,7 @@ Voici un exemple de fichier `README.md` qui guide l'utilisateur à travers la co
 Avant de commencer, assurez-vous d'avoir configuré le fichier `config.php` avec les informations nécessaires pour vos moyens de paiement (comme Stripe, Paypal, etc.).
 
 ```bash
-cp config.php.example config.php
+cp config.copie.php config.php
 ```
 
 Modifiez `config.php` pour ajouter vos clés d'API et autres configurations spécifiques.
