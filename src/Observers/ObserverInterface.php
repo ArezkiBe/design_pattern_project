@@ -2,6 +2,9 @@
 
 namespace PaymentLibrary\Observers;
 
-interface ObserverInterface {
-    public function update($transactionStatus);
+use SplSubject;
+
+interface ObserverInterface
+{
+    public function update(SplSubject $subject);
 }

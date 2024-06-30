@@ -2,9 +2,10 @@
 
 namespace PaymentLibrary;
 
-interface PaymentInterface {
-    public function initialize(array $config);
+interface PaymentInterface
+{
     public function createTransaction($amount, $currency, $description);
-    public function executeTransaction($transactionId);
     public function cancelTransaction($transactionId);
+    public function confirmPayment($transactionId);
+    public function executeTransaction($amount, $currency, $description);
 }

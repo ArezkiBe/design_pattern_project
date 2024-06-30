@@ -3,13 +3,15 @@
 namespace PaymentLibrary;
 
 class PaymentFactory {
-    public static function create($method, $apiKey, $testCardToken = null) {
+    public static function createPaymentProcessor($method, $config) {
         switch ($method) {
             case 'stripe':
-                if (!$apiKey || !$testCardToken) {
-                    throw new \InvalidArgumentException("Missing API Key or Test Card Token for Stripe.");
+                if (!$config) {
+                    throw new \InvalidArgumentException("Missing config for Stripe.");
                 }
-                return new StripePayment($apiKey, $testCardToken);
+                return new StripePaymentProcessor($config['secret_key'], $config['test_card_token']);
+                break;
+            // Ajouter d'autres méthodes de paiement ici
             default:
                 throw new \Exception("Unknown payment type: " . $method);
         }
