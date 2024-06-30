@@ -43,7 +43,7 @@ class StripePaymentProcessor implements PaymentInterface, SplSubject
             $this->notify();
             return $paymentIntent;
         } catch (\Exception $e) {
-            throw new \Exception("Erreur lors du paiement Stripe : " . $e->getMessage());
+            throw new \Exception("Erreur lors de la création du paiement Stripe : " . $e->getMessage());
         }
     }
 
@@ -71,12 +71,6 @@ class StripePaymentProcessor implements PaymentInterface, SplSubject
         } catch (\Exception $e) {
             throw new \Exception("Erreur lors de la confirmation du paiement Stripe : " . $e->getMessage());
         }
-    }
-
-    public function executeTransaction($amount, $currency, $description)
-    {
-        $paymentIntent = $this->createTransaction($amount, $currency, $description);
-        $this->confirmPayment($paymentIntent->id);
     }
 
     public function attach(SplObserver $observer): void

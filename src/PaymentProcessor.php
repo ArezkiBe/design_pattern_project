@@ -13,7 +13,7 @@ abstract class PaymentProcessor implements PaymentInterface
 
     abstract public function createTransaction($amount, $currency, $description);
 
-    abstract public function executeTransaction($amount, $currency, $description);
-
     abstract public function cancelTransaction($transactionId);
+    
+    abstract public function confirmPayment($transactionId);
 }
