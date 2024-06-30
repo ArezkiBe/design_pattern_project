@@ -1,4 +1,3 @@
-```markdown
 # Payment Library
 
 ## Configuration
