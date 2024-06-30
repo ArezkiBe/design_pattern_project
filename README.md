@@ -1,5 +1,3 @@
-Voici un exemple de fichier `README.md` qui guide l'utilisateur à travers la configuration, l'installation des dépendances via Composer, et l'exécution des tests avec le script PHP `cli_payment_processor.php` :
-
 ```markdown
 # Payment Library
 
