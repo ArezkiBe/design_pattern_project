@@ -2,19 +2,9 @@
 
 namespace PaymentLibrary;
 
-interface TransactionState {
-    public function proceed(Transaction $transaction);
-}
-
-class PendingState implements TransactionState {
-    public function proceed(Transaction $transaction) {
-        // Logique pour passer de l'état pending à un autre état
-        $transaction->setState(new SuccessState());
-    }
-}
-
-class SuccessState implements TransactionState {
-    public function proceed(Transaction $transaction) {
-        // Logique pour l'état success
-    }
+class PaymentStatus {
+    const PENDING = 'pending';
+    const COMPLETED = 'completed';
+    const FAILED = 'failed';
+    const CANCELED = 'canceled';
 }

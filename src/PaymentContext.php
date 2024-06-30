@@ -3,25 +3,25 @@
 namespace PaymentLibrary;
 
 class PaymentContext {
-    private $paymentStrategy;
+    private $paymentProcessor;
 
-    public function setPaymentStrategy(PaymentInterface $paymentStrategy) {
-        $this->paymentStrategy = $paymentStrategy;
+    public function __construct(PaymentInterface $paymentProcessor) {
+        $this->paymentProcessor = $paymentProcessor;
     }
 
     public function initialize(array $config) {
-        $this->paymentStrategy->initialize($config);
+        $this->paymentProcessor->initialize($config);
     }
 
     public function createTransaction($amount, $currency, $description) {
-        return $this->paymentStrategy->createTransaction($amount, $currency, $description);
+        return $this->paymentProcessor->createTransaction($amount, $currency, $description);
     }
 
-    public function executeTransaction($transactionId) {
-        return $this->paymentStrategy->executeTransaction($transactionId);
+    public function executeTransaction($paymentIntentId) {
+        return $this->paymentProcessor->executeTransaction($paymentIntentId);
     }
 
-    public function cancelTransaction($transactionId) {
-        return $this->paymentStrategy->cancelTransaction($transactionId);
+    public function cancelTransaction($paymentIntentId) {
+        return $this->paymentProcessor->cancelTransaction($paymentIntentId);
     }
 }
