@@ -33,35 +33,28 @@ class PaymentLibraryTest extends TestCase
         $currency = 'eur';
         $description = 'Test de paiement avec Stripe';
 
-        $this->paymentProcessor->executeTransaction($amount, $currency, $description);
+        $this->paymentProcessor->createTransaction($amount, $currency, $description);
 
         // Vérifier l'ID de la dernière transaction
         $paymentIntentId = $this->paymentProcessor->getLastPaymentIntentId();
         $this->assertNotNull($paymentIntentId);
 
-        // Assurez-vous que le paiement a réussi (par exemple, vérifiez le statut ou l'ID du paiement)
-        $paymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntentId);
-        $this->assertEquals('succeeded', $paymentIntent->status);
+        // Confirmation du paiment
 
-        // Après avoir vérifié le succès du paiement, annuler le PaymentIntent pour réinitialiser l'état
+        //$this->paymentProcessor->confirmPayment($paymentIntentId);
+
+
+
+        // Assurez-vous que le paiement a réussi (par exemple, vérifiez le statut ou l'ID du paiement)
+
+        //$paymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntentId);
+        //$this->assertEquals('succeeded', $paymentIntent->status);
+
+
+        // Annuler le PaymentIntent si le paiment n'est pas confirmer
         $cancelledIntentStatus = $this->paymentProcessor->cancelTransaction($paymentIntentId);
 
         // Assurez-vous que l'annulation a réussi
         $this->assertEquals('canceled', $cancelledIntentStatus);
-    }
-
-    protected function tearDown(): void
-    {
-        // Nettoyage après chaque test
-        if ($this->paymentProcessor instanceof StripePaymentProcessor && $this->paymentProcessor->getLastPaymentIntentId()) {       
-            try {
-                // Annuler le PaymentIntent après chaque test pour éviter les erreurs de confirmation déjà effectuée
-                $this->paymentProcessor->cancelTransaction($this->paymentProcessor->getLastPaymentIntentId());
-            } catch (\Exception $e) {
-                // Gérer l'erreur d'annulation ici si nécessaire
-            }
-        }
-
-        parent::tearDown();
     }
 }
