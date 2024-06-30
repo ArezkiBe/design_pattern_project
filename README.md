@@ -37,7 +37,3 @@ vendor/bin/phpunit
 ```
 
 Assurez-vous que tous les tests passent avec succès avant de déployer ou d'intégrer les modifications dans un environnement de production.
-
-```
-
-Ce fichier `README.md` fournit des instructions claires et concises sur la configuration initiale, l'installation des dépendances, l'utilisation du CLI pour tester les paiements, et l'exécution des tests unitaires. Assurez-vous de personnaliser les sections selon les détails spécifiques de votre projet et d'inclure toutes les informations pertinentes pour les utilisateurs ou les développeurs qui pourraient utiliser votre bibliothèque de paiement.
